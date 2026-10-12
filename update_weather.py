@@ -9,7 +9,7 @@ import json
 import subprocess
 import sys
 import urllib.request
-from datetime import datetime
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parent
@@ -49,7 +49,7 @@ def render(data):
     lines = [
         f"# 北京天气预报 · {today}",
         "",
-        f"> 数据更新时间：{datetime.now().strftime('%Y-%m-%d %H:%M')}（北京时间），来源：[Open-Meteo](https://open-meteo.com/)",
+        f"> 数据更新时间：{datetime.now(timezone(timedelta(hours=8))).strftime('%Y-%m-%d %H:%M')}（北京时间），来源：[Open-Meteo](https://open-meteo.com/)",
         "",
         "| 日期 | 天气 | 最高气温 | 最低气温 | 降水概率 | 最大风速 |",
         "| --- | --- | --- | --- | --- | --- |",
