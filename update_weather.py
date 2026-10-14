@@ -74,6 +74,10 @@ def git(*args):
 
 
 def main():
+    # 先同步远程，避免与其他定时通道（如 GitHub Actions）的提交冲突
+    git("fetch", "origin", "main")
+    git("rebase", "origin/main")
+
     data = fetch()
     today, md = render(data)
 
